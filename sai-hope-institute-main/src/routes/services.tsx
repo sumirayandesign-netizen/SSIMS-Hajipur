@@ -59,7 +59,8 @@ function Page() {
                   <h3 className="text-xl font-bold text-deep">{s.t}</h3>
                   <p className="mt-2 text-subtle leading-relaxed">{s.d}</p>
                   
-                  /* Isko Link se hata kar div banaya gaya hai taaki nested link error na aaye */
+                
+              
                   <div className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary">
                     View Details <ArrowRight size={14} />
                   </div>
