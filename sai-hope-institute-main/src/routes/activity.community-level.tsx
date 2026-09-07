@@ -3,7 +3,7 @@ import { PageHero } from "@/components/site/page-hero";
 import { useState } from "react";
 import { X } from "lucide-react";
 
-// Sahi uploaded file paths
+// Aapki nai uploaded images ke paths (public folder reference)
 const communityImg = "/ssims/community.webp";
 const galleryImages = [
   "/ssims/Community Gallery (1).webp",
@@ -29,6 +29,7 @@ export const Route = createFileRoute("/activity/community-level")({
 });
 
 function Page() {
+  // Full image preview ke liye state
   const [activeImage, setActiveImage] = useState<string | null>(null);
 
   return (
@@ -40,10 +41,10 @@ function Page() {
         crumbs={[{ label: "Activity" }, { label: "Community Level" }]} 
       />
       
-      {/* Top Section with Headline & Community Image side-by-side */}
+      {/* Top Section jisme headline aur prominent image hai */}
       <section className="py-20 bg-slate-50/50">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
+          <div className="grid lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-5 sticky top-28">
               <h2 className="text-3xl md:text-4xl font-bold text-deep leading-tight">
                 Empowering communities through active healthcare outreach.
@@ -51,23 +52,25 @@ function Page() {
               <div className="mt-6 h-1.5 w-20 gradient-brand rounded-full"></div>
             </div>
             
-            <div className="lg:col-span-7 grid sm:grid-cols-2 gap-6 items-center">
+            <div className="lg:col-span-7 space-y-12">
+              {/* Top Prominent Community Image */}
               <div 
                 onClick={() => setActiveImage(communityImg)}
-                className="overflow-hidden rounded-[28px] shadow-soft border-2 border-border/80 cursor-pointer group bg-white"
+                className="overflow-hidden rounded-3xl shadow-soft border-2 border-border/80 cursor-pointer group bg-white p-2"
               >
                 <img 
                   src={communityImg} 
                   alt="Community Outreach" 
-                  className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-105" 
+                  className="w-full h-80 object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105" 
                 />
               </div>
+
               <div className="prose prose-lg text-subtle leading-relaxed">
                 <p>
-                  Our vision of a healthier society extends far beyond clinical treatments. We actively organize comprehensive health awareness campaigns, regular screening camps, and preventive care programs across remote and underserved areas.
+                  Our vision of a healthier society extends far beyond clinical treatments. We actively organize comprehensive health awareness campaigns, regular screening camps, and preventive care programs across remote and underserved areas. 
                 </p>
                 <p>
-                  Through free medicine distribution, continuous blood donation drives, and vital training for local healthcare workers, our community initiatives make quality medical consultations accessible.
+                  Through free medicine distribution, continuous blood donation drives, and vital training for local healthcare workers, our community initiatives make early detection and quality medical consultations accessible to everyone.
                 </p>
               </div>
             </div>
@@ -75,19 +78,19 @@ function Page() {
         </div>
       </section>
 
-      {/* Gallery, Stats & Ways to Give Section */}
+      {/* Gallery, Stats aur Donation Section */}
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-6">
           
           <h3 className="text-2xl font-bold text-deep mb-8">Community Gallery</h3>
           
-          {/* Gallery Images Grid */}
+          {/* Naya Gallery Images Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {galleryImages.map((img, index) => (
               <div 
                 key={index} 
                 onClick={() => setActiveImage(img)}
-                className="group rounded-[28px] overflow-hidden bg-white shadow-soft border-2 border-border/80 aspect-[4/3] relative cursor-pointer hover:shadow-glow transition-all"
+                className="group rounded-3xl overflow-hidden bg-white shadow-soft border-2 border-border/80 aspect-[4/3] relative cursor-pointer"
               >
                 <img 
                   src={img} 
@@ -144,19 +147,19 @@ function Page() {
         </div>
       </section>
 
-      {/* Full Image Preview Lightbox Modal */}
+      {/* Full Image Preview Modal */}
       {activeImage && (
         <div 
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-10"
           onClick={() => setActiveImage(null)}
         >
           <div 
-            className="relative max-w-5xl w-full bg-white rounded-3xl p-3 shadow-2xl border-4 border-white overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-5xl w-full bg-white rounded-3xl p-3 shadow-2xl border-4 border-white"
+            onClick={(e) => e.stopPropagation()} // Modal content click prevents closing
           >
             <button 
               onClick={() => setActiveImage(null)}
-              className="absolute top-5 right-5 z-10 h-10 w-10 rounded-full bg-black/70 text-white flex items-center justify-center hover:bg-black transition-colors shadow-lg cursor-pointer"
+              className="absolute top-5 right-5 z-10 h-10 w-10 rounded-full bg-black/70 text-white flex items-center justify-center hover:bg-black transition-colors"
               aria-label="Close preview"
             >
               <X size={20} />
@@ -164,7 +167,7 @@ function Page() {
             <img 
               src={activeImage} 
               alt="Expanded Preview" 
-              className="w-full max-h-[80vh] object-contain rounded-2xl"
+              className="w-full h-auto max-h-[85vh] object-contain rounded-2xl"
             />
           </div>
         </div>
