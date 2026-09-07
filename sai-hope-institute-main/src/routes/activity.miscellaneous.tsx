@@ -17,7 +17,12 @@ const galleryImages = [
 function MiscellaneousPage() {
   return (
     <>
-      <PageHero "Activity" "Miscellaneous" crumbs="{[{" eyebrow="Holistic Healing" label: subtitle="Supporting emotional well-being through cultural and motivational activities." title="Beyond Treatment & Care" { }, }]}/>
+      <PageHero 
+        eyebrow="Holistic Healing" 
+        title="Beyond Treatment & Care" 
+        subtitle="Supporting emotional well-being through cultural and motivational activities." 
+        crumbs={[{ label: "Activity" }, { label: "Miscellaneous" }]} 
+      />
       
       <section className="py-20 bg-slate-50/50">
         <div className="mx-auto max-w-7xl px-6">
