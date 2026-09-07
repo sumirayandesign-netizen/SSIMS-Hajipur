@@ -14,7 +14,7 @@ const svc2 = "/ssims/services/2.png";
 const svc3 = "/ssims/services/3.png";
 const svc4 = "/ssims/services/4.jpg";
 
-export const Route = createFileRoute("/services")({
+export const Route = createFileRoute("/services/")({ rc/routes/services.medical-oncology.tsx
   head: () => ({
     meta: [
       { title: "Cancer Care Services — SSIMS Hajipur" },
