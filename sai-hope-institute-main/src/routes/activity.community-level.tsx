@@ -1,10 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/page-hero";
 
-// Aapki purani images
-const community = "/ssims/community-oncology-banner.webp";
-const facility = "/ssims/banner/2.png";
-const research = "/ssims/banner/6.png";
+// Donation section ke liye zaroori purani images
 const blood = "/ssims/blood-donation.webp";
 const organ = "/ssims/organ-doantion.webp";
 const medicine = "/ssims/medicine-donation.webp";
@@ -32,39 +29,52 @@ function Page() {
         crumbs={[{ label: "Activity" }, { label: "Community Level" }]} 
       />
       
-      {/* Naya Text Design Section */}
+      {/* Top Section: Text aur uske bagal me Community Image */}
       <section className="py-20 bg-slate-50/50">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid lg:grid-cols-12 gap-12 items-start">
-            <div className="lg:col-span-5 sticky top-28">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            
+            {/* Left Side: Headline aur Text */}
+            <div>
               <h2 className="text-3xl md:text-4xl font-bold text-deep leading-tight">
                 Empowering communities through active healthcare outreach.
               </h2>
-              <div className="mt-6 h-1.5 w-20 gradient-brand rounded-full"></div>
+              <div className="mt-6 mb-8 h-1.5 w-20 gradient-brand rounded-full"></div>
+              
+              <div className="prose prose-lg text-subtle leading-relaxed">
+                <p>
+                  Our vision of a healthier society extends far beyond clinical treatments. We actively organize comprehensive health awareness campaigns, regular screening camps, and preventive care programs across remote and underserved areas. 
+                </p>
+                <p className="mt-4">
+                  Through free medicine distribution, continuous blood donation drives, and vital training for local healthcare workers, our community initiatives are designed to make early detection and quality medical consultations accessible to everyone, regardless of their geographic location.
+                </p>
+              </div>
             </div>
-            
-            <div className="lg:col-span-7 prose prose-lg text-subtle leading-relaxed">
-              <p>
-                Our vision of a healthier society extends far beyond clinical treatments. We actively organize comprehensive health awareness campaigns, regular screening camps, and preventive care programs across remote and underserved areas. 
-              </p>
-              <p>
-                Through free medicine distribution, continuous blood donation drives, and vital training for local healthcare workers, our community initiatives are designed to make early detection and quality medical consultations accessible to everyone, regardless of their geographic location.
-              </p>
+
+            {/* Right Side: community.webp Image */}
+            <div className="relative rounded-[28px] overflow-hidden shadow-soft ring-1 ring-border/50 h-[450px]">
+              <img 
+                src="/ssims/community.webp" 
+                alt="Community Outreach" 
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
+                loading="lazy" 
+              />
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* Aapka Purana Gallery, Stats aur Donation Section */}
+      {/* Nayi Gallery, Stats aur Donation Section */}
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-6">
           
-          {/* Gallery Block */}
+          {/* GitHub par Upload ki gayi Nayi Gallery Images */}
           <div className="grid gap-4 md:grid-cols-3">
-            <img src={community} alt="Community" className="col-span-2 h-80 w-full object-cover rounded-3xl shadow-soft" loading="lazy" />
-            <img src={facility} alt="Facility" className="h-80 w-full object-cover rounded-3xl shadow-soft" loading="lazy" />
-            <img src={research} alt="Research" className="h-80 w-full object-cover rounded-3xl shadow-soft" loading="lazy" />
-            <img src={blood} alt="Blood Donation" className="col-span-2 h-80 w-full object-cover rounded-3xl shadow-soft" loading="lazy" />
+            <img src="/ssims/Community Gallery (1).webp" alt="Gallery 1" className="col-span-2 h-80 w-full object-cover rounded-3xl shadow-soft transition-transform hover:scale-[1.02]" loading="lazy" />
+            <img src="/ssims/Community Gallery (2).webp" alt="Gallery 2" className="h-80 w-full object-cover rounded-3xl shadow-soft transition-transform hover:scale-[1.02]" loading="lazy" />
+            <img src="/ssims/Community Gallery (3).webp" alt="Gallery 3" className="h-80 w-full object-cover rounded-3xl shadow-soft transition-transform hover:scale-[1.02]" loading="lazy" />
+            <img src="/ssims/Community Gallery (4).webp" alt="Gallery 4" className="col-span-2 h-80 w-full object-cover rounded-3xl shadow-soft transition-transform hover:scale-[1.02]" loading="lazy" />
           </div>
           
           {/* Stats Block */}
@@ -75,7 +85,7 @@ function Page() {
               { n: "120+", l: "Health camps" },
               { n: "8,000+", l: "Awareness sessions" },
             ].map((s) => (
-              <div key={s.l} className="rounded-3xl bg-white p-8 text-center shadow-soft ring-1 ring-border/50">
+              <div key={s.l} className="rounded-3xl bg-white p-8 text-center shadow-soft ring-1 ring-border/50 hover:-translate-y-1 transition-all">
                 <div className="text-3xl font-extrabold text-gradient">{s.n}</div>
                 <div className="mt-2 text-sm text-subtle">{s.l}</div>
               </div>
