@@ -1,10 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/page-hero";
+import { useState } from "react";
+import { X } from "lucide-react";
 
-// Aapki purani images (Ye waisi hi rahengi)
-const community = "/ssims/community-oncology-banner.webp";
-const facility = "/ssims/banner/2.png";
-const research = "/ssims/banner/6.png";
+// Sahi uploaded file paths
+const communityImg = "/ssims/community.webp";
+const galleryImages = [
+  "/ssims/Community Gallery (1).webp",
+  "/ssims/Community Gallery (2).webp",
+  "/ssims/Community Gallery (3).webp",
+  "/ssims/Community Gallery (4).webp",
+];
 const blood = "/ssims/blood-donation.webp";
 const organ = "/ssims/organ-doantion.webp";
 const medicine = "/ssims/medicine-donation.webp";
@@ -23,6 +29,8 @@ export const Route = createFileRoute("/activity/community-level")({
 });
 
 function Page() {
+  const [activeImage, setActiveImage] = useState<string | null>(null);
+
   return (
     <>
       <PageHero 
@@ -32,10 +40,10 @@ function Page() {
         crumbs={[{ label: "Activity" }, { label: "Community Level" }]} 
       />
       
-      {/* Text Design Section + Aapki Top Image */}
+      {/* Top Section with Headline & Community Image side-by-side */}
       <section className="py-20 bg-slate-50/50">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid lg:grid-cols-12 gap-12 items-start">
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-5 sticky top-28">
               <h2 className="text-3xl md:text-4xl font-bold text-deep leading-tight">
                 Empowering communities through active healthcare outreach.
@@ -43,61 +51,56 @@ function Page() {
               <div className="mt-6 h-1.5 w-20 gradient-brand rounded-full"></div>
             </div>
             
-            <div className="lg:col-span-7 prose prose-lg text-subtle leading-relaxed">
-              {/* Nayi community.webp Image Headline ke bagal me */}
-              <img 
-                src="/ssims/community.webp" 
-                alt="Community Outreach" 
-                className="w-full h-80 object-cover rounded-3xl shadow-soft mb-8 ring-1 ring-border/50" 
-                loading="lazy" 
-              />
-              
-              <p>
-                Our vision of a healthier society extends far beyond clinical treatments. We actively organize comprehensive health awareness campaigns, regular screening camps, and preventive care programs across remote and underserved areas. 
-              </p>
-              <p>
-                Through free medicine distribution, continuous blood donation drives, and vital training for local healthcare workers, our community initiatives are designed to make early detection and quality medical consultations accessible to everyone, regardless of their geographic location.
-              </p>
+            <div className="lg:col-span-7 grid sm:grid-cols-2 gap-6 items-center">
+              <div 
+                onClick={() => setActiveImage(communityImg)}
+                className="overflow-hidden rounded-[28px] shadow-soft border-2 border-border/80 cursor-pointer group bg-white"
+              >
+                <img 
+                  src={communityImg} 
+                  alt="Community Outreach" 
+                  className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-105" 
+                />
+              </div>
+              <div className="prose prose-lg text-subtle leading-relaxed">
+                <p>
+                  Our vision of a healthier society extends far beyond clinical treatments. We actively organize comprehensive health awareness campaigns, regular screening camps, and preventive care programs across remote and underserved areas.
+                </p>
+                <p>
+                  Through free medicine distribution, continuous blood donation drives, and vital training for local healthcare workers, our community initiatives make quality medical consultations accessible.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Gallery, Stats & Ways to Give Section */}
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-6">
           
-          {/* Nayi 4-Image Gallery */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-deep mb-8 text-center">Community Event Gallery</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                "/ssims/Community%20Gallery%20(1).webp",
-                "/ssims/Community%20Gallery%20(2).webp",
-                "/ssims/Community%20Gallery%20(3).webp",
-                "/ssims/Community%20Gallery%20(4).webp"
-              ].map((imgUrl, idx) => (
-                <div key={idx} className="group rounded-2xl overflow-hidden shadow-soft ring-1 ring-border/50 aspect-square relative">
-                  <img 
-                    src={imgUrl} 
-                    alt={`Event Gallery ${idx + 1}`} 
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" 
-                    loading="lazy" 
-                  />
-                  <div className="absolute inset-0 bg-deep/10 group-hover:bg-transparent transition-colors duration-500"></div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Aapka Purana Gallery Block */}
-          <div className="grid gap-4 md:grid-cols-3">
-            <img src={community} alt="Community" className="col-span-2 h-80 w-full object-cover rounded-3xl shadow-soft" loading="lazy" />
-            <img src={facility} alt="Facility" className="h-80 w-full object-cover rounded-3xl shadow-soft" loading="lazy" />
-            <img src={research} alt="Research" className="h-80 w-full object-cover rounded-3xl shadow-soft" loading="lazy" />
-            <img src={blood} alt="Blood Donation" className="col-span-2 h-80 w-full object-cover rounded-3xl shadow-soft" loading="lazy" />
+          <h3 className="text-2xl font-bold text-deep mb-8">Community Gallery</h3>
+          
+          {/* Gallery Images Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {galleryImages.map((img, index) => (
+              <div 
+                key={index} 
+                onClick={() => setActiveImage(img)}
+                className="group rounded-[28px] overflow-hidden bg-white shadow-soft border-2 border-border/80 aspect-[4/3] relative cursor-pointer hover:shadow-glow transition-all"
+              >
+                <img 
+                  src={img} 
+                  alt={`Community Gallery ${index + 1}`} 
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-deep/10 group-hover:bg-transparent transition-colors duration-500"></div>
+              </div>
+            ))}
           </div>
           
-          {/* Purana Stats Block */}
+          {/* Stats Block */}
           <div className="mt-16 grid md:grid-cols-4 gap-6">
             {[
               { n: "200+", l: "Villages reached" },
@@ -112,7 +115,7 @@ function Page() {
             ))}
           </div>
           
-          {/* Purana Ways to Give Block */}
+          {/* Ways to Give Block */}
           <div className="mt-20">
             <div className="text-center max-w-2xl mx-auto">
               <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
@@ -140,6 +143,32 @@ function Page() {
 
         </div>
       </section>
+
+      {/* Full Image Preview Lightbox Modal */}
+      {activeImage && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setActiveImage(null)}
+        >
+          <div 
+            className="relative max-w-5xl w-full bg-white rounded-3xl p-3 shadow-2xl border-4 border-white overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              onClick={() => setActiveImage(null)}
+              className="absolute top-5 right-5 z-10 h-10 w-10 rounded-full bg-black/70 text-white flex items-center justify-center hover:bg-black transition-colors shadow-lg cursor-pointer"
+              aria-label="Close preview"
+            >
+              <X size={20} />
+            </button>
+            <img 
+              src={activeImage} 
+              alt="Expanded Preview" 
+              className="w-full max-h-[80vh] object-contain rounded-2xl"
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }
