@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X, Phone, Mail, MapPin, Facebook, Instagram, Youtube, Linkedin, Globe, HeartPulse } from "lucide-react";
+import { Menu, X, Phone, Mail, MapPin, Facebook, Instagram, Youtube, Linkedin, Globe, HeartPulse, ChevronDown } from "lucide-react";
 
 const links = [
   { to: "/", label: "Home" },
@@ -11,6 +11,21 @@ const links = [
   { to: "/doctors", label: "Doctors" },
   { to: "/community", label: "Community" },
   { to: "/contact", label: "Contact" },
+];
+
+// Naya array jisme saari services ke links hain
+const servicesSubLinks = [
+  { to: "/services/medical-oncology", label: "Medical Oncology" },
+  { to: "/services/radiation-oncology", label: "Radiation Oncology" },
+  { to: "/services/surgical-oncology", label: "Surgical Oncology" },
+  { to: "/services/telemedicine", label: "Telemedicine" },
+  { to: "/services/opd-and-screening", label: "OPD & Screening" },
+  { to: "/services/palliative-care", label: "Palliative Care" },
+  { to: "/services/community-oncology", label: "Community Oncology" },
+  { to: "/services/research-and-trials", label: "Research & Trials" },
+  { to: "/services/blood-donation-camps", label: "Blood Donation Camps" },
+  { to: "/services/animal-research-lab", label: "Animal Research Lab" },
+  { to: "/services/emergency-care", label: "Emergency Care" },
 ];
 
 export function TopBar() {
@@ -55,31 +70,68 @@ export function Logo({ variant = "dark" }: { variant?: "dark" | "light" }) {
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
   return (
     <header className="sticky top-0 z-50">
       <TopBar />
       <div className={`transition-all duration-300 ${scrolled ? "glass shadow-soft" : "bg-transparent"}`}>
         <div className="mx-auto max-w-7xl px-6 h-20 flex items-center justify-between">
           <Logo />
+          
+          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
-            {links.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                className="relative px-3 py-2 text-sm font-medium text-deep/80 hover:text-primary transition-colors"
-                activeProps={{ className: "text-primary" }}
-                activeOptions={{ exact: l.to === "/" }}
-              >
-                {l.label}
-              </Link>
-            ))}
+            {links.map((l) => {
+              if (l.label === "Services") {
+                return (
+                  <div key={l.to} className="relative group">
+                    <Link
+                      to={l.to}
+                      className="relative px-3 py-2 text-sm font-medium text-deep/80 hover:text-primary transition-colors flex items-center gap-1"
+                      activeProps={{ className: "text-primary" }}
+                    >
+                      {l.label}
+                      <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-200" />
+                    </Link>
+                    
+                    {/* Dropdown Box */}
+                    <div className="absolute left-0 top-full w-64 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                      <div className="rounded-xl bg-white shadow-xl border border-gray-100 overflow-hidden flex flex-col py-2">
+                        {servicesSubLinks.map((sub) => (
+                          <Link 
+                            key={sub.to} 
+                            to={sub.to} 
+                            className="px-5 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors"
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+              
+              return (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  className="relative px-3 py-2 text-sm font-medium text-deep/80 hover:text-primary transition-colors"
+                  activeProps={{ className: "text-primary" }}
+                  activeOptions={{ exact: l.to === "/" }}
+                >
+                  {l.label}
+                </Link>
+              );
+            })}
           </nav>
+          
           <div className="flex items-center gap-2">
             <Link
               to="/appointment"
@@ -96,15 +148,43 @@ export function Nav() {
             </button>
           </div>
         </div>
+        
+        {/* Mobile Navigation */}
         {open && (
-          <div className="lg:hidden border-t border-border bg-white/95 backdrop-blur">
+          <div className="lg:hidden border-t border-border bg-white/95 backdrop-blur max-h-[70vh] overflow-y-auto">
             <div className="px-6 py-4 flex flex-col gap-1">
-              {links.map((l) => (
-                <Link key={l.to} to={l.to} onClick={() => setOpen(false)} className="py-2 text-deep font-medium">
-                  {l.label}
-                </Link>
-              ))}
-              <Link to="/appointment" onClick={() => setOpen(false)} className="mt-2 inline-flex justify-center rounded-full gradient-brand px-5 py-3 text-white font-semibold">Book Appointment</Link>
+              {links.map((l) => {
+                if (l.label === "Services") {
+                  return (
+                    <div key={l.to} className="py-2">
+                      <Link to={l.to} onClick={() => setOpen(false)} className="text-deep font-medium block">
+                        {l.label}
+                      </Link>
+                      <div className="mt-2 ml-3 pl-3 flex flex-col gap-3 border-l-2 border-gray-100">
+                        {servicesSubLinks.map((sub) => (
+                          <Link 
+                            key={sub.to} 
+                            to={sub.to} 
+                            onClick={() => setOpen(false)} 
+                            className="text-sm text-gray-600 hover:text-primary"
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+                
+                return (
+                  <Link key={l.to} to={l.to} onClick={() => setOpen(false)} className="py-2 text-deep font-medium">
+                    {l.label}
+                  </Link>
+                );
+              })}
+              <Link to="/appointment" onClick={() => setOpen(false)} className="mt-4 inline-flex justify-center rounded-full gradient-brand px-5 py-3 text-white font-semibold">
+                Book Appointment
+              </Link>
             </div>
           </div>
         )}
