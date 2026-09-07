@@ -14,7 +14,7 @@ const svc2 = "/ssims/services/2.png";
 const svc3 = "/ssims/services/3.png";
 const svc4 = "/ssims/services/4.jpg";
 
-export const Route = createFileRoute("/services/")({ rc/routes/services.medical-oncology.tsx
+export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
       { title: "Cancer Care Services — SSIMS Hajipur" },
@@ -47,7 +47,6 @@ function Page() {
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-6 grid gap-8 md:grid-cols-2">
           {services.map((s) => (
-            /* Outer div ko hatakar Link laga diya hai, block class add ki hai */
             <Link to={s.slug} key={s.t} className="block group rounded-[28px] bg-white shadow-soft ring-1 ring-border/50 overflow-hidden hover:-translate-y-1 hover:shadow-glow transition-all cursor-pointer">
               <div className="grid sm:grid-cols-5 gap-0">
                 <div className="sm:col-span-2 relative h-52 sm:h-full overflow-hidden">
@@ -59,8 +58,6 @@ function Page() {
                   <h3 className="text-xl font-bold text-deep">{s.t}</h3>
                   <p className="mt-2 text-subtle leading-relaxed">{s.d}</p>
                   
-                
-              
                   <div className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary">
                     View Details <ArrowRight size={14} />
                   </div>
