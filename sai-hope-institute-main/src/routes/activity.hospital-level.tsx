@@ -1,4 +1,3 @@
-```tsx
 import { createFileRoute } from '@tanstack/react-router'
 import { PageHero } from "@/components/site/page-hero"
 
@@ -16,24 +15,29 @@ const galleryImages = [
 function HospitalLevelPage() {
   return (
     <>
-      <PageHero "Activity" "Hospital Level" crumbs="{[{" eyebrow="Clinical Excellence" label: subtitle="Maintaining the highest standards of care, technology, and patient comfort." title="Excellence in Hospital Services" { }, }]}/>
+      <PageHero 
+        eyebrow="Clinical Excellence" 
+        title="Excellence in Hospital Services" 
+        subtitle="Maintaining the highest standards of care, technology, and patient comfort." 
+        crumbs={[{ label: "Activity" }, { label: "Hospital Level" }]} 
+      />
       
       <section className="py-20 bg-slate-50/50">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-5 sticky top-28">
               <h2 className="text-3xl md:text-4xl font-bold text-deep leading-tight">
-                Advanced clinical practices and continuous medical education.
+                Advanced clinical practices and specialized departments.
               </h2>
               <div className="mt-6 h-1.5 w-20 gradient-brand rounded-full"></div>
             </div>
             
             <div className="lg:col-span-7 prose prose-lg text-subtle leading-relaxed">
               <p>
-                Delivering world-class healthcare requires a dynamic, highly trained environment within the hospital. From optimizing outpatient departments (OPD) and inpatient services to integrating modern diagnostic tools, our focus remains firmly on patient-centric care.
+                SSIMS Hajipur is committed to delivering world-class healthcare within the hospital through advanced clinical practices and specialized departments. From OPD and IPD services to intensive care units, diagnostics, radiology, and pharmacy, every facility is designed to provide patients with comprehensive treatment under one roof. Our hospital seamlessly ensures seamless coordination between medical teams, modern technology, and supportive care, enabling patients to receive accurate diagnoses and effective treatments.
               </p>
               <p>
-                We prioritize continuous training sessions for our medical staff, seamless coordination across specialized departments, and the rigorous maintenance of hospital management standards. This internal excellence ensures every patient experiences safety, trust, and a supportive healing environment.
+                Alongside medical services, SSIMS emphasizes patient comfort and compassionate care. With dedicated staff, safe blood bank services, in-house pharmacy, and round-the-clock emergency support, we maintain the highest standards of hospital management. Regular training sessions, biomedical research, and integration of telemedicine further strengthen our hospital-level activities, ensuring that every patient experiences quality care, trust, and hope throughout their healing journey.
               </p>
             </div>
           </div>
