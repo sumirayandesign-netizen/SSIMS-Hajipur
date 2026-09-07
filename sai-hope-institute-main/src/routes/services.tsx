@@ -27,17 +27,17 @@ export const Route = createFileRoute("/services")({
 });
 
 const services = [
-  { img: svc1, i: Syringe, t: "Medical Oncology", d: "Chemotherapy, targeted therapy and immunotherapy delivered with clinical precision and warmth." },
-  { img: svc2, i: Activity, t: "Radiation Oncology", d: "State-of-the-art LINAC, IMRT and IGRT for accurate, safer treatment." },
-  { img: svc3, i: Stethoscope, t: "Surgical Oncology", d: "Minimally invasive and complex cancer surgeries by expert surgical teams." },
-  { img: banner4, i: Video, t: "Telemedicine", d: "Expert consults, second opinions and post-treatment follow-ups from anywhere." },
-  { img: opd, i: Users, t: "OPD & Screening", d: "Walk-in outpatient care, screening and diagnostics — every day." },
-  { img: banner6, i: HandHeart, t: "Palliative Care", d: "Comfort, dignity and family support at every stage of the journey." },
-  { img: community, i: Users, t: "Community Oncology", d: "Free camps and awareness across 200+ villages in Bihar." },
-  { img: banner5, i: Microscope, t: "Research & Trials", d: "Access to leading clinical trials and translational research programs." },
-  { img: blood, i: Droplet, t: "Blood Donation Camps", d: "Regular donation drives supporting patients across the region." },
-  { img: svc4, i: FlaskConical, t: "Animal Research Lab", d: "Pre-clinical research advancing next-generation therapies." },
-  { img: banner3, i: Ambulance, t: "Emergency Care", d: "24×7 emergency, trauma and critical oncology support." },
+  { slug: "/services/medical-oncology", img: svc1, i: Syringe, t: "Medical Oncology", d: "Chemotherapy, targeted therapy and immunotherapy delivered with clinical precision and warmth." },
+  { slug: "/services/radiation-oncology", img: svc2, i: Activity, t: "Radiation Oncology", d: "State-of-the-art LINAC, IMRT and IGRT for accurate, safer treatment." },
+  { slug: "/services/surgical-oncology", img: svc3, i: Stethoscope, t: "Surgical Oncology", d: "Minimally invasive and complex cancer surgeries by expert surgical teams." },
+  { slug: "/services/telemedicine", img: banner4, i: Video, t: "Telemedicine", d: "Expert consults, second opinions and post-treatment follow-ups from anywhere." },
+  { slug: "/services/opd-and-screening", img: opd, i: Users, t: "OPD & Screening", d: "Walk-in outpatient care, screening and diagnostics — every day." },
+  { slug: "/services/palliative-care", img: banner6, i: HandHeart, t: "Palliative Care", d: "Comfort, dignity and family support at every stage of the journey." },
+  { slug: "/services/community-oncology", img: community, i: Users, t: "Community Oncology", d: "Free camps and awareness across 200+ villages in Bihar." },
+  { slug: "/services/research-and-trials", img: banner5, i: Microscope, t: "Research & Trials", d: "Access to leading clinical trials and translational research programs." },
+  { slug: "/services/blood-donation-camps", img: blood, i: Droplet, t: "Blood Donation Camps", d: "Regular donation drives supporting patients across the region." },
+  { slug: "/services/animal-research-lab", img: svc4, i: FlaskConical, t: "Animal Research Lab", d: "Pre-clinical research advancing next-generation therapies." },
+  { slug: "/services/emergency-care", img: banner3, i: Ambulance, t: "Emergency Care", d: "24×7 emergency, trauma and critical oncology support." },
 ];
 
 function Page() {
@@ -47,7 +47,8 @@ function Page() {
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-6 grid gap-8 md:grid-cols-2">
           {services.map((s) => (
-            <div key={s.t} className="group rounded-[28px] bg-white shadow-soft ring-1 ring-border/50 overflow-hidden hover:-translate-y-1 hover:shadow-glow transition-all">
+            /* Outer div ko hatakar Link laga diya hai, block class add ki hai */
+            <Link to={s.slug} key={s.t} className="block group rounded-[28px] bg-white shadow-soft ring-1 ring-border/50 overflow-hidden hover:-translate-y-1 hover:shadow-glow transition-all cursor-pointer">
               <div className="grid sm:grid-cols-5 gap-0">
                 <div className="sm:col-span-2 relative h-52 sm:h-full overflow-hidden">
                   <img src={s.img} alt={s.t} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
@@ -57,10 +58,14 @@ function Page() {
                 <div className="sm:col-span-3 p-7">
                   <h3 className="text-xl font-bold text-deep">{s.t}</h3>
                   <p className="mt-2 text-subtle leading-relaxed">{s.d}</p>
-                  <Link to="/appointment" className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary">Book consultation <ArrowRight size={14} /></Link>
+                  
+                  /* Isko Link se hata kar div banaya gaya hai taaki nested link error na aaye */
+                  <div className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                    View Details <ArrowRight size={14} />
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
