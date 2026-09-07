@@ -9,11 +9,10 @@ const links = [
   { to: "/departments", label: "Centres" },
   { to: "/research", label: "Research" },
   { to: "/doctors", label: "Doctors" },
-  { to: "/community", label: "Community" },
+  { to: "/activity", label: "Activity" }, // Community ko hatakar Activity kar diya
   { to: "/contact", label: "Contact" },
 ];
 
-// Naya array jisme saari services ke links hain
 const servicesSubLinks = [
   { to: "/services/medical-oncology", label: "Medical Oncology" },
   { to: "/services/radiation-oncology", label: "Radiation Oncology" },
@@ -26,6 +25,13 @@ const servicesSubLinks = [
   { to: "/services/blood-donation-camps", label: "Blood Donation Camps" },
   { to: "/services/animal-research-lab", label: "Animal Research Lab" },
   { to: "/services/emergency-care", label: "Emergency Care" },
+];
+
+// Activity ke 3 naye dropdown links
+const activitySubLinks = [
+  { to: "/activity/community-level", label: "Community / Level" },
+  { to: "/activity/hospital-level", label: "Hospital Level" },
+  { to: "/activity/miscellaneous", label: "Miscellaneous" },
 ];
 
 export function TopBar() {
@@ -85,32 +91,37 @@ export function Nav() {
         <div className="mx-auto max-w-7xl px-6 h-20 flex items-center justify-between">
           <Logo />
           
-          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
             {links.map((l) => {
+              // Services Dropdown
               if (l.label === "Services") {
                 return (
                   <div key={l.to} className="relative group">
-                    <Link
-                      to={l.to}
-                      className="relative px-3 py-2 text-sm font-medium text-deep/80 hover:text-primary transition-colors flex items-center gap-1"
-                      activeProps={{ className: "text-primary" }}
-                    >
-                      {l.label}
-                      <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-200" />
+                    <Link to={l.to} className="relative px-3 py-2 text-sm font-medium text-deep/80 hover:text-primary transition-colors flex items-center gap-1">
+                      {l.label} <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-200" />
                     </Link>
-                    
-                    {/* Dropdown Box */}
                     <div className="absolute left-0 top-full w-64 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                       <div className="rounded-xl bg-white shadow-xl border border-gray-100 overflow-hidden flex flex-col py-2">
                         {servicesSubLinks.map((sub) => (
-                          <Link 
-                            key={sub.to} 
-                            to={sub.to} 
-                            className="px-5 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors"
-                          >
-                            {sub.label}
-                          </Link>
+                          <Link key={sub.to} to={sub.to} className="px-5 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors">{sub.label}</Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+              
+              // Activity Dropdown
+              if (l.label === "Activity") {
+                return (
+                  <div key={l.to} className="relative group">
+                    <button className="relative px-3 py-2 text-sm font-medium text-deep/80 hover:text-primary transition-colors flex items-center gap-1 cursor-default">
+                      {l.label} <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-200" />
+                    </button>
+                    <div className="absolute left-0 top-full w-56 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                      <div className="rounded-xl bg-white shadow-xl border border-gray-100 overflow-hidden flex flex-col py-2">
+                        {activitySubLinks.map((sub) => (
+                          <Link key={sub.to} to={sub.to} className="px-5 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors">{sub.label}</Link>
                         ))}
                       </div>
                     </div>
@@ -119,13 +130,7 @@ export function Nav() {
               }
               
               return (
-                <Link
-                  key={l.to}
-                  to={l.to}
-                  className="relative px-3 py-2 text-sm font-medium text-deep/80 hover:text-primary transition-colors"
-                  activeProps={{ className: "text-primary" }}
-                  activeOptions={{ exact: l.to === "/" }}
-                >
+                <Link key={l.to} to={l.to} className="relative px-3 py-2 text-sm font-medium text-deep/80 hover:text-primary transition-colors" activeProps={{ className: "text-primary" }} activeOptions={{ exact: l.to === "/" }}>
                   {l.label}
                 </Link>
               );
@@ -133,61 +138,14 @@ export function Nav() {
           </nav>
           
           <div className="flex items-center gap-2">
-            <Link
-              to="/appointment"
-              className="hidden sm:inline-flex items-center gap-2 rounded-full gradient-brand px-5 py-2.5 text-sm font-semibold text-white shadow-glow hover:shadow-[0_25px_65px_-15px_rgba(0,174,239,0.7)] transition-all hover:-translate-y-0.5"
-            >
+            <Link to="/appointment" className="hidden sm:inline-flex items-center gap-2 rounded-full gradient-brand px-5 py-2.5 text-sm font-semibold text-white shadow-glow hover:shadow-[0_25px_65px_-15px_rgba(0,174,239,0.7)] transition-all hover:-translate-y-0.5">
               Book Appointment
             </Link>
-            <button
-              onClick={() => setOpen((v) => !v)}
-              className="lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-white/80 backdrop-blur"
-              aria-label="Menu"
-            >
+            <button onClick={() => setOpen((v) => !v)} className="lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-white/80 backdrop-blur" aria-label="Menu">
               {open ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
-        
-        {/* Mobile Navigation */}
-        {open && (
-          <div className="lg:hidden border-t border-border bg-white/95 backdrop-blur max-h-[70vh] overflow-y-auto">
-            <div className="px-6 py-4 flex flex-col gap-1">
-              {links.map((l) => {
-                if (l.label === "Services") {
-                  return (
-                    <div key={l.to} className="py-2">
-                      <Link to={l.to} onClick={() => setOpen(false)} className="text-deep font-medium block">
-                        {l.label}
-                      </Link>
-                      <div className="mt-2 ml-3 pl-3 flex flex-col gap-3 border-l-2 border-gray-100">
-                        {servicesSubLinks.map((sub) => (
-                          <Link 
-                            key={sub.to} 
-                            to={sub.to} 
-                            onClick={() => setOpen(false)} 
-                            className="text-sm text-gray-600 hover:text-primary"
-                          >
-                            {sub.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                }
-                
-                return (
-                  <Link key={l.to} to={l.to} onClick={() => setOpen(false)} className="py-2 text-deep font-medium">
-                    {l.label}
-                  </Link>
-                );
-              })}
-              <Link to="/appointment" onClick={() => setOpen(false)} className="mt-4 inline-flex justify-center rounded-full gradient-brand px-5 py-3 text-white font-semibold">
-                Book Appointment
-              </Link>
-            </div>
-          </div>
-        )}
       </div>
     </header>
   );
