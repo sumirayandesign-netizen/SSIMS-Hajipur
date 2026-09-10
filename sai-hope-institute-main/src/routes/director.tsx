@@ -25,7 +25,7 @@ function DirectorPage() {
               <div className="rounded-[32px] overflow-hidden shadow-soft border-4 border-white relative bg-white">
                 {/* Director's Image: GitHub ke public/ssims folder me 'director-jk-singh.webp' naam se photo upload karein */}
                 <img 
-                  src="/ssims/director-jk-singh.webp" 
+                  src="/ssims/sai-hope-institute-main/src/assets/Dr.J_K_Singh_with_Pratibha_Patil_at_Pratibha_Samman.webp" 
                   alt="Dr. J. K. Singh" 
                   className="w-full aspect-[4/5] object-cover"
                   onError={(e) => {
