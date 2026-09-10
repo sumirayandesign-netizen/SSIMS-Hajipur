@@ -1,6 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { PageHero } from "@/components/site/page-hero"
-import { Award, GraduationCap, Medal, Star, ShieldPlus, HeartPulse, Trophy } from 'lucide-react'
+import { GraduationCap, Medal, Star, ShieldPlus, HeartPulse, Trophy } from 'lucide-react'
+
+// GitHub par aapke upload kiye gaye location ke hisaab se image import
+import directorImg from '../assets/director-jk-singh.png'
 
 export const Route = createFileRoute('/director')({
   component: DirectorPage,
@@ -18,24 +21,21 @@ function DirectorPage() {
       
       <section className="py-20 bg-slate-50/50">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid lg:grid-cols-12 gap-16 items-start">
+          <div className="grid lg:grid-cols-12 gap-12 items-start">
             
-            {/* Left Column: Photo & Quick Stats */}
-            <div className="lg:col-span-4 sticky top-28 space-y-6">
+            {/* Left Column: Vertical Photo & Quick Stats (Image ko bada karne ke liye col-span-5 kiya gaya hai) */}
+            <div className="lg:col-span-5 sticky top-28 space-y-6">
               <div className="rounded-[32px] overflow-hidden shadow-soft border-4 border-white relative bg-white">
-                {/* Director's Image: GitHub ke public/ssims folder me 'director-jk-singh.webp' naam se photo upload karein */}
+                
                 <img 
-                  src="/ssims/sai-hope-institute-main/src/assets/Dr.J_K_Singh_with_Pratibha_Patil_at_Pratibha_Samman.webp" 
-                  alt="Dr. J. K. Singh" 
-                  className="w-full aspect-[4/5] object-cover"
-                  onError={(e) => {
-                    // Agar image abhi upload nahi hui hai to temporary placeholder dikhega
-                    e.currentTarget.src = "https://placehold.co/600x750/e2e8f0/64748b?text=Dr.+J.K.+Singh"
-                  }}
+                  src={directorImg} 
+                  alt="Dr. J. K. Singh Receiving Padma Shri" 
+                  // Vertical image ko poora dikhane ke liye h-auto aur max-h set kiya gaya hai
+                  className="w-full h-auto max-h-[85vh] object-cover object-top"
                 />
                 
                 {/* 49+ Years Badge overlay */}
-                <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm p-4 rounded-2xl shadow-lg border border-gray-100 flex items-center gap-4">
+                <div className="absolute bottom-5 left-5 right-5 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-gray-100 flex items-center gap-4 hover:-translate-y-1 transition-transform">
                   <div className="h-12 w-12 rounded-full gradient-brand flex items-center justify-center text-white shrink-0 shadow-glow">
                     <HeartPulse size={24} />
                   </div>
@@ -47,12 +47,12 @@ function DirectorPage() {
               </div>
             </div>
             
-            {/* Right Column: Bio, Education & Achievements */}
-            <div className="lg:col-span-8">
+            {/* Right Column: Bio, Education & Achievements (Takes remaining 7 columns) */}
+            <div className="lg:col-span-7">
               
               {/* Intro / Bio */}
               <div className="mb-12">
-                <div className="inline-flex items-center gap-2 rounded-full bg-orange-100 px-4 py-1.5 text-sm font-bold tracking-wide text-orange-600 mb-6">
+                <div className="inline-flex items-center gap-2 rounded-full bg-orange-100 px-4 py-1.5 text-sm font-bold tracking-wide text-orange-600 mb-6 shadow-sm">
                   <Star size={16} className="fill-orange-500" /> PADMA SHRI AWARDEE
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold text-deep leading-tight mb-6">
@@ -104,13 +104,13 @@ function DirectorPage() {
                     { year: "2015", desc: "Recognized by London University for lecture on healthcare in South-East Asia." },
                     { year: "2015", desc: "Awarded Fellowship by Applied Research Lab, TPS College, Patna." },
                   ].map((item, index) => (
-                    <div key={index} className="flex gap-4 items-start p-4 rounded-xl hover:bg-white hover:shadow-soft transition-all">
-                      <div className="mt-1 bg-green-50 p-2 rounded-lg text-green-600 shrink-0">
+                    <div key={index} className="flex gap-4 items-start p-5 rounded-2xl bg-white border border-transparent hover:border-blue-100 hover:shadow-soft transition-all">
+                      <div className="mt-1 bg-green-50 p-2.5 rounded-xl text-green-600 shrink-0 shadow-sm">
                         <Medal size={20} />
                       </div>
                       <div>
                         <div className="font-bold text-deep text-lg">{item.year}</div>
-                        <div className="text-subtle">{item.desc}</div>
+                        <div className="text-subtle mt-1 leading-relaxed">{item.desc}</div>
                       </div>
                     </div>
                   ))}
