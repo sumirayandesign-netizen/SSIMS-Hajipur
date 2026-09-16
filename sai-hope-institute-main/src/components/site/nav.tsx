@@ -4,7 +4,7 @@ import { Menu, X, Phone, Mail, MapPin, Facebook, Instagram, Youtube, Linkedin, G
 
 const links = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "About" }, // Ise hum niche dropdown banayenge
+  { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
   { to: "/departments", label: "Centres" },
   { to: "/research", label: "Research" },
@@ -13,7 +13,6 @@ const links = [
   { to: "/contact", label: "Contact" },
 ];
 
-// About Sub-links
 const aboutSubLinks = [
   { to: "/about", label: "About Us" },
   { to: "/doctors", label: "Our Doctors" },
@@ -100,7 +99,6 @@ export function Nav() {
           <nav className="hidden lg:flex items-center gap-1">
             {links.map((l) => {
               
-              // About Dropdown
               if (l.label === "About") {
                 return (
                   <div key={l.to} className="relative group">
@@ -110,7 +108,7 @@ export function Nav() {
                     <div className="absolute left-0 top-full w-56 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                       <div className="rounded-xl bg-white shadow-xl border border-gray-100 overflow-hidden flex flex-col py-2">
                         {aboutSubLinks.map((sub) => (
-                          <Link key={sub.to} to={sub.to} className="px-5 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors">{sub.label}</Link>
+                          <Link key={sub.to} to={sub.to as any} className="px-5 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors">{sub.label}</Link>
                         ))}
                       </div>
                     </div>
@@ -118,17 +116,16 @@ export function Nav() {
                 );
               }
 
-              // Services Dropdown
               if (l.label === "Services") {
                 return (
                   <div key={l.to} className="relative group">
-                    <Link to={l.to} className="relative px-3 py-2 text-sm font-medium text-deep/80 hover:text-primary transition-colors flex items-center gap-1">
+                    <Link to={l.to as any} className="relative px-3 py-2 text-sm font-medium text-deep/80 hover:text-primary transition-colors flex items-center gap-1">
                       {l.label} <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-200" />
                     </Link>
                     <div className="absolute left-0 top-full w-64 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                       <div className="rounded-xl bg-white shadow-xl border border-gray-100 overflow-hidden flex flex-col py-2">
                         {servicesSubLinks.map((sub) => (
-                          <Link key={sub.to} to={sub.to} className="px-5 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors">{sub.label}</Link>
+                          <Link key={sub.to} to={sub.to as any} className="px-5 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors">{sub.label}</Link>
                         ))}
                       </div>
                     </div>
@@ -136,7 +133,6 @@ export function Nav() {
                 );
               }
               
-              // Activity Dropdown
               if (l.label === "Activity") {
                 return (
                   <div key={l.to} className="relative group">
@@ -146,7 +142,7 @@ export function Nav() {
                     <div className="absolute left-0 top-full w-56 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                       <div className="rounded-xl bg-white shadow-xl border border-gray-100 overflow-hidden flex flex-col py-2">
                         {activitySubLinks.map((sub) => (
-                          <Link key={sub.to} to={sub.to} className="px-5 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors">{sub.label}</Link>
+                          <Link key={sub.to} to={sub.to as any} className="px-5 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors">{sub.label}</Link>
                         ))}
                       </div>
                     </div>
@@ -155,7 +151,7 @@ export function Nav() {
               }
               
               return (
-                <Link key={l.to} to={l.to} className="relative px-3 py-2 text-sm font-medium text-deep/80 hover:text-primary transition-colors" activeProps={{ className: "text-primary" }} activeOptions={{ exact: l.to === "/" }}>
+                <Link key={l.to} to={l.to as any} className="relative px-3 py-2 text-sm font-medium text-deep/80 hover:text-primary transition-colors" activeProps={{ className: "text-primary" }} activeOptions={{ exact: l.to === "/" }}>
                   {l.label}
                 </Link>
               );
