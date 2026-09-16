@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowLeft, Video, FileSignature, Globe2, ShieldCheck, CalendarCheck, Laptop, PhoneCall, HeartHandshake } from 'lucide-react'
+import { ArrowLeft, Video, FileSignature, Globe2, HeartHandshake, ShieldCheck, CalendarCheck, Laptop, PhoneCall, CheckCircle2 } from 'lucide-react'
 
 export const Route = createFileRoute('/services/telemedicine')({
   component: TelemedicinePage,
@@ -19,14 +19,14 @@ function TelemedicinePage() {
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-6">
-              Virtual Cancer Care
+              Healthcare That Reaches You
             </div>
             <h1 className="text-4xl md:text-5xl font-extrabold text-deep leading-tight mb-6">
               Expert Oncology Consultations <br/>
-              <span className="text-primary">From Your Home.</span>
+              <span className="text-primary">Wherever You Are.</span>
             </h1>
             <p className="text-lg text-subtle leading-relaxed mb-8">
-              Distance should never be a barrier to world-class cancer care. SSIMS Hajipur's Telemedicine service brings our top surgical and medical oncologists directly to your screen. Whether you need a primary consultation, a crucial second opinion, or a routine follow-up, expert guidance is now just a click away.
+              Distance should never be a barrier to world-class cancer care. SSIMS Hajipur's Telemedicine service brings our top oncologists directly to your screen, eliminating the need for travel. A modern solution for rural patients and those seeking expert second opinions without delay.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link to="/appointment" className="inline-flex items-center justify-center rounded-full gradient-brand px-8 py-3.5 text-sm font-semibold text-white shadow-glow hover:-translate-y-1 transition-all">
@@ -40,95 +40,114 @@ function TelemedicinePage() {
           
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-transparent rounded-[2rem] transform translate-x-4 translate-y-4 -z-10"></div>
-            {/* Image path adjusted to match your services array (banner4) */}
             <img 
               src="/ssims/banner/4.png" 
-              alt="Telemedicine and Virtual Consultation at SSIMS Hajipur" 
+              alt="Telemedicine at SSIMS Hajipur" 
               className="w-full rounded-[2rem] shadow-soft border border-white object-cover aspect-[4/3]" 
             />
           </div>
         </div>
 
-        {/* Benefits of Telemedicine Section */}
+        {/* Hospital Stats (Purane website se liya gaya) */}
+        <div className="mb-24 grid grid-cols-2 md:grid-cols-4 gap-6">
+          {[
+            { num: "350+", label: "Bed Capacity" },
+            { num: "24 Hrs", label: "Telemedicine" },
+            { num: "9+", label: "Departments" },
+            { num: "1650+", label: "Patients Treated" },
+          ].map((stat, idx) => (
+            <div key={idx} className="bg-deep rounded-3xl p-8 text-center shadow-lg transform hover:-translate-y-1 transition-all">
+              <div className="text-4xl font-extrabold text-white mb-2">{stat.num}</div>
+              <div className="text-sm font-medium text-teal-400 uppercase tracking-wider">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* What's Included Section (Purane website ka detailed content) */}
         <div className="mb-24">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold text-deep mb-4">Why Choose SSIMS Tele-Oncology?</h2>
+            <h2 className="text-3xl font-bold text-deep mb-4">What's Included in Our Telemedicine Services?</h2>
             <p className="text-subtle">
-              Cancer treatment requires continuous monitoring and expert advice. Our virtual clinics are designed to make your healthcare journey stress-free and highly accessible.
+              Trusted medical support—virtually, quickly, and affordably. We ensure your virtual care is just as comprehensive as an in-person visit.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white p-8 rounded-[28px] shadow-soft ring-1 ring-border/50 hover:-translate-y-1 hover:shadow-glow transition-all">
-              <div className="h-12 w-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6">
-                <FileSignature size={24} />
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Card 1 */}
+            <div className="bg-white p-8 rounded-[28px] shadow-soft ring-1 ring-border/50 hover:shadow-glow transition-all">
+              <div className="h-14 w-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6">
+                <Video size={28} />
               </div>
-              <h3 className="text-lg font-bold text-deep mb-3">Expert Second Opinions</h3>
-              <p className="text-sm text-subtle leading-relaxed">
-                Upload your biopsy or scan reports securely. Get a definitive treatment roadmap from our specialized Tumor Board without leaving your city.
-              </p>
+              <h3 className="text-xl font-bold text-deep mb-6">Video & Audio Consults</h3>
+              <ul className="space-y-4">
+                {["First-time consultations", "Routine Follow-ups", "Expert Second opinions", "Progress tracking"].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-subtle">
+                    <CheckCircle2 size={18} className="text-primary shrink-0" /> {item}
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div className="bg-white p-8 rounded-[28px] shadow-soft ring-1 ring-border/50 hover:-translate-y-1 hover:shadow-glow transition-all">
-              <div className="h-12 w-12 rounded-xl bg-green-50 text-green-600 flex items-center justify-center mb-6">
-                <Globe2 size={24} />
+            {/* Card 2 */}
+            <div className="bg-white p-8 rounded-[28px] shadow-soft ring-1 ring-border/50 hover:shadow-glow transition-all">
+              <div className="h-14 w-14 rounded-2xl bg-green-50 text-green-600 flex items-center justify-center mb-6">
+                <FileSignature size={28} />
               </div>
-              <h3 className="text-lg font-bold text-deep mb-3">Reaching Rural Bihar</h3>
-              <p className="text-sm text-subtle leading-relaxed">
-                We are bridging the healthcare gap. Patients in remote villages can now access the same high-quality oncology care as those in metro cities.
-              </p>
+              <h3 className="text-xl font-bold text-deep mb-6">Digital Prescriptions</h3>
+              <ul className="space-y-4">
+                {["Instant PDF prescriptions", "Medication guidance", "Diet & Lifestyle tips", "SMS/Email reminders"].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-subtle">
+                    <CheckCircle2 size={18} className="text-primary shrink-0" /> {item}
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div className="bg-white p-8 rounded-[28px] shadow-soft ring-1 ring-border/50 hover:-translate-y-1 hover:shadow-glow transition-all">
-              <div className="h-12 w-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center mb-6">
-                <HeartHandshake size={24} />
+            {/* Card 3 */}
+            <div className="bg-white p-8 rounded-[28px] shadow-soft ring-1 ring-border/50 hover:shadow-glow transition-all">
+              <div className="h-14 w-14 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center mb-6">
+                <HeartHandshake size={28} />
               </div>
-              <h3 className="text-lg font-bold text-deep mb-3">Post-Treatment Care</h3>
-              <p className="text-sm text-subtle leading-relaxed">
-                Stay connected with your oncologist for routine follow-ups, medication adjustments, and symptom management during your recovery phase.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-[28px] shadow-soft ring-1 ring-border/50 hover:-translate-y-1 hover:shadow-glow transition-all">
-              <div className="h-12 w-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-6">
-                <ShieldCheck size={24} />
-              </div>
-              <h3 className="text-lg font-bold text-deep mb-3">Secure & Confidential</h3>
-              <p className="text-sm text-subtle leading-relaxed">
-                We use state-of-the-art encrypted video consultation platforms, ensuring your medical history, reports, and privacy are always protected.
-              </p>
+              <h3 className="text-xl font-bold text-deep mb-6">Patient Navigation</h3>
+              <ul className="space-y-4">
+                {["Dedicated Appointment helpdesk", "Emergency escalation", "Referral coordination", "Technical support for calls"].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-subtle">
+                    <CheckCircle2 size={18} className="text-primary shrink-0" /> {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
 
-        {/* How it Works Section */}
+        {/* How it Works Section (Naye design ka smart UI) */}
         <div className="mb-24 bg-white rounded-[3rem] p-8 md:p-12 shadow-soft ring-1 ring-border/50">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
-              <h2 className="text-3xl font-bold text-deep mb-8">Seamless Virtual Care in 3 Simple Steps</h2>
+              <h2 className="text-3xl font-bold text-deep mb-8">How Virtual Consultation Works</h2>
               
               <div className="space-y-8">
                 <div className="flex gap-4">
                   <div className="h-12 w-12 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 font-bold text-xl">1</div>
                   <div>
-                    <h4 className="text-xl font-bold text-deep mb-2">Book & Upload</h4>
-                    <p className="text-subtle leading-relaxed">Schedule your appointment online or via our Care Line. Upload your previous medical records, scans, and reports securely through our portal.</p>
+                    <h4 className="text-xl font-bold text-deep mb-2">Book Your Slot</h4>
+                    <p className="text-subtle leading-relaxed">Patients can book virtual appointments online or by calling our helpdesk. Upload necessary documents securely.</p>
                   </div>
                 </div>
                 
                 <div className="flex gap-4">
                   <div className="h-12 w-12 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 font-bold text-xl">2</div>
                   <div>
-                    <h4 className="text-xl font-bold text-deep mb-2">Connect Virtually</h4>
-                    <p className="text-subtle leading-relaxed">Join the high-definition video call from your smartphone or laptop. Discuss your symptoms and concerns face-to-face with our senior oncologists.</p>
+                    <h4 className="text-xl font-bold text-deep mb-2">Consult the Specialist</h4>
+                    <p className="text-subtle leading-relaxed">A secure video or phone consultation is arranged with our experienced oncologists to ensure proper medical attention remotely.</p>
                   </div>
                 </div>
 
                 <div className="flex gap-4">
                   <div className="h-12 w-12 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 font-bold text-xl">3</div>
                   <div>
-                    <h4 className="text-xl font-bold text-deep mb-2">Receive Your Care Plan</h4>
-                    <p className="text-subtle leading-relaxed">Get a detailed digital prescription, dietary advice, and a comprehensive treatment roadmap sent directly to your phone immediately after the consultation.</p>
+                    <h4 className="text-xl font-bold text-deep mb-2">In-Person Visit (If Needed)</h4>
+                    <p className="text-subtle leading-relaxed">If the doctor recommends an in-person visit for further diagnostics, SSIMS ensures a seamless transition with priority access.</p>
                   </div>
                 </div>
               </div>
@@ -152,7 +171,7 @@ function TelemedicinePage() {
           </div>
         </div>
 
-        {/* SSIMS Single Branch USP */}
+        {/* SSIMS USP Banner */}
         <div className="rounded-[3rem] p-8 md:p-16 gradient-brand text-white relative overflow-hidden">
           <div className="absolute -top-24 -right-24 opacity-10 pointer-events-none">
             <Globe2 size={350} />
@@ -161,7 +180,7 @@ function TelemedicinePage() {
             <div className="lg:col-span-8">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Empowering Every District of Bihar</h2>
               <p className="text-white/90 text-lg leading-relaxed max-w-2xl">
-                As a single, dedicated center of excellence in Hajipur, our physical location ensures focused, premium care. However, our Telemedicine platform breaks geographical boundaries, ensuring that every patient across Bihar and neighboring states has direct access to Dr. J.K. Singh's legacy of compassionate cancer care.
+                While our physical center in Hajipur ensures focused, premium care, our Telemedicine platform breaks geographical boundaries. We ensure that every patient across Bihar and neighboring states has direct access to our legacy of compassionate cancer care.
               </p>
             </div>
             <div className="lg:col-span-4 flex lg:justify-end">
