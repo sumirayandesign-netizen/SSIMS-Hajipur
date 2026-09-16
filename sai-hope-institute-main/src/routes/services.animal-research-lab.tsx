@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowLeft, FlaskConical, Dna, Microscope, ShieldCheck, Leaf, Activity, TestTube, Crosshair, Network } from 'lucide-react'
+// यहाँ CheckCircle2 मिसिंग था, जिसे अब जोड़ दिया गया है:
+import { ArrowLeft, FlaskConical, Dna, Microscope, ShieldCheck, Leaf, Activity, TestTube, Crosshair, Network, CheckCircle2 } from 'lucide-react'
 
 export const Route = createFileRoute('/services/animal-research-lab')({
   component: AnimalResearchLabPage,
@@ -40,7 +41,6 @@ function AnimalResearchLabPage() {
           
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/20 to-transparent rounded-[2rem] transform translate-x-4 translate-y-4 -z-10"></div>
-            {/* Note: Ensure you upload an appropriate image for the lab in your public/ssims/services/ folder */}
             <img 
               src="/ssims/services/animal-lab.jpg" 
               alt="State-of-the-art Animal Research Laboratory at SSIMS Hajipur" 
