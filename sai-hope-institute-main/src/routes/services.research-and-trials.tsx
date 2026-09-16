@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowLeft, BookOpen, Microscope, ShieldAlert, Syringe, ChevronDown, ChevronUp, Dna, FileSearch } from 'lucide-react'
+import { ArrowLeft, Microscope, ShieldAlert, Syringe, ChevronDown, ChevronUp, Dna, FileSearch, GraduationCap, CheckCircle2 } from 'lucide-react'
 import { useState } from 'react'
 
 export const Route = createFileRoute('/services/research-and-trials')({
@@ -7,7 +7,6 @@ export const Route = createFileRoute('/services/research-and-trials')({
 })
 
 function ResearchAndTrialsPage() {
-  // State to manage which research project is currently open
   const [openProject, setOpenProject] = useState<string | null>(null);
 
   const toggleProject = (id: string) => {
@@ -87,56 +86,88 @@ function ResearchAndTrialsPage() {
           </div>
         </div>
 
-        {/* Educational Programs Section */}
-        <div id="academic-programs" className="mb-24 bg-slate-50/80 rounded-[3rem] p-8 md:p-12 shadow-inner border border-border/50">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
+        {/* =========================================
+            UNIQUE EDUCATIONAL PROGRAMS SECTION 
+            ========================================= */}
+        <div id="academic-programs" className="mb-24 relative rounded-[3rem] p-8 md:p-14 overflow-hidden bg-deep text-white shadow-2xl">
+          {/* Decorative background elements */}
+          <div className="absolute top-0 right-0 p-16 opacity-5 pointer-events-none">
+            <GraduationCap size={400} />
+          </div>
+          <div className="absolute -left-20 -bottom-20 w-72 h-72 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div className="relative z-10 grid lg:grid-cols-12 gap-12 items-center">
+            {/* Left Side: Academic Context */}
             <div className="lg:col-span-5">
-              <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-100 text-blue-600 mb-6 shadow-sm">
-                <BookOpen size={32} />
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-teal-300 mb-6 backdrop-blur-sm border border-white/20">
+                Admissions Open 
               </div>
-              <h2 className="text-3xl font-bold text-deep mb-4">Educational Programs</h2>
-              <p className="text-subtle text-lg leading-relaxed mb-6">
-                SSIMS Hajipur is not just a treatment center; it is a hub of academic excellence shaping the next generation of top-tier surgical oncologists in India.
+              <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-6 leading-tight">
+                Nurturing Future <br/>
+                <span className="text-primary">Surgical Oncologists.</span>
+              </h2>
+              <p className="text-slate-300 text-lg leading-relaxed mb-8">
+                SSIMS Hajipur is a recognized hub of academic excellence. Our flagship M.Ch. program is designed to shape the next generation of top-tier surgical experts through rigorous clinical training and advanced research.
               </p>
+              <div className="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
+                <span className="flex items-center gap-2"><CheckCircle2 size={18} className="text-teal-400"/> NMC Recognized</span>
+                <span className="flex items-center gap-2"><CheckCircle2 size={18} className="text-teal-400"/> Hands-on Training</span>
+              </div>
             </div>
             
+            {/* Right Side: The Course Card */}
             <div className="lg:col-span-7">
-              <div className="bg-white rounded-3xl p-8 shadow-soft border border-border/50 hover:shadow-glow transition-all">
-                <div className="flex items-start justify-between flex-wrap gap-4 mb-6">
-                  <div>
-                    <h3 className="text-2xl font-bold text-deep mb-2">M.Ch. in Surgical Oncology</h3>
-                    <p className="text-primary font-medium">An advanced postgraduate surgical program.</p>
-                  </div>
-                  <div className="bg-green-50 text-green-700 px-4 py-1.5 rounded-full text-sm font-bold border border-green-100">
-                    Admissions Open
-                  </div>
+              <div className="bg-white rounded-3xl p-8 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] border-2 border-primary/20 relative overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+                
+                {/* Top Right "Admissions Open" ribbon/badge */}
+                <div className="absolute top-0 right-0 bg-green-500 text-white text-xs font-bold px-5 py-2.5 rounded-bl-2xl shadow-sm tracking-wider uppercase">
+                  Apply Now
                 </div>
+
+                <div className="mb-6 pt-2">
+                  <h3 className="text-2xl font-black text-deep mb-2">M.Ch. in Surgical Oncology</h3>
+                  <p className="text-primary font-semibold">Super Specialty Postgraduate Program</p>
+                </div>
+                
                 <p className="text-subtle leading-relaxed mb-8 text-sm">
-                  Dedicated to specialized training in oncological surgery. This comprehensive course prepares students with in-depth knowledge, advanced research capabilities, and the clinical skills required to treat complex cancer cases.
+                  Dedicated to specialized training in oncological surgery. This comprehensive 3-year course prepares students with in-depth knowledge, advanced research capabilities, and the complex clinical skills required to treat advanced cancer cases.
                 </p>
                 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <div className="bg-slate-50 p-4 rounded-2xl text-center border border-gray-100">
+                {/* Stats Grid */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                  <div className="bg-slate-50 p-4 rounded-2xl text-center border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
                     <div className="text-2xl font-black text-deep mb-1">3</div>
-                    <div className="text-xs text-subtle font-medium uppercase tracking-wider">Years</div>
+                    <div className="text-xs text-subtle font-bold uppercase tracking-wider">Years</div>
                   </div>
-                  <div className="bg-slate-50 p-4 rounded-2xl text-center border border-gray-100">
+                  <div className="bg-slate-50 p-4 rounded-2xl text-center border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
                     <div className="text-2xl font-black text-deep mb-1">2</div>
-                    <div className="text-xs text-subtle font-medium uppercase tracking-wider">Seats</div>
+                    <div className="text-xs text-subtle font-bold uppercase tracking-wider">Seats</div>
                   </div>
-                  <div className="bg-slate-50 p-4 rounded-2xl text-center border border-gray-100">
-                    <div className="text-sm font-black text-deep mb-1 mt-1.5">Full-Time</div>
-                    <div className="text-xs text-subtle font-medium uppercase tracking-wider">Mode</div>
+                  <div className="bg-slate-50 p-4 rounded-2xl text-center border border-slate-100 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-center">
+                    <div className="text-sm font-black text-deep mb-1">Full-Time</div>
+                    <div className="text-[10px] text-subtle font-bold uppercase tracking-wider">Mode</div>
                   </div>
-                  <div className="bg-slate-50 p-4 rounded-2xl text-center border border-gray-100">
-                    <div className="text-sm font-black text-deep mb-1 mt-1.5">Deemed</div>
-                    <div className="text-xs text-subtle font-medium uppercase tracking-wider">Institution</div>
+                  <div className="bg-slate-50 p-4 rounded-2xl text-center border border-slate-100 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-center">
+                    <div className="text-sm font-black text-deep mb-1">Deemed</div>
+                    <div className="text-[10px] text-subtle font-bold uppercase tracking-wider">Institution</div>
                   </div>
+                </div>
+
+                {/* Action Buttons inside the card */}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <button className="flex-1 bg-deep text-white px-6 py-3.5 rounded-xl text-sm font-bold shadow-md hover:bg-deep/90 transition-colors text-center">
+                    Download Prospectus
+                  </button>
+                  <button className="flex-1 bg-primary/10 text-primary border border-primary/20 px-6 py-3.5 rounded-xl text-sm font-bold hover:bg-primary hover:text-white transition-colors text-center">
+                    View Eligibility
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        {/* ========================================= */}
+
 
         {/* INTERACTIVE Ongoing Projects Section */}
         <div id="ongoing-research" className="mb-24">
@@ -212,7 +243,7 @@ function ResearchAndTrialsPage() {
           </div>
         </div>
 
-        {/* NEW SEO-Relevant Section: Clinical Trials Participation */}
+        {/* Clinical Trials Participation */}
         <div className="rounded-[3rem] p-8 md:p-16 gradient-brand text-white relative overflow-hidden shadow-2xl">
           <div className="absolute -top-10 -right-10 opacity-10 pointer-events-none">
             <FileSearch size={350} />
