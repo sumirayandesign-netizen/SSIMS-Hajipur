@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Youtube, Linkedin, Mail, Phone, MapPin, Send } from "lucide-react";
+
 import ssimsLogo from "../../assets/SSIMS Logo.png";
 
 export function Footer() {
@@ -11,9 +12,11 @@ export function Footer() {
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
             
-            {/* Yahan se round shape aur background hata kar nav jaisa code kar diya gaya hai */}
+            {/* Logo Section - Bina kisi background ya white box ke */}
             <Link to="/" className="flex items-center gap-3 mb-4">
-              <img src={ssimsLogo} alt="SSIMS Hajipur crest" className="h-14 w-auto object-contain bg-transparent" />
+              <div className="relative h-14 flex items-center justify-center">
+                <img src={ssimsLogo} alt="SSIMS Hajipur crest" className="h-14 w-auto object-contain bg-transparent drop-shadow-sm" />
+              </div>
               <div className="leading-tight">
                 <div className="font-display font-extrabold tracking-tight text-white">SSIMS <span className="text-primary">Hajipur</span></div>
                 <div className="text-[10px] uppercase tracking-[0.18em] text-white/70">Sri Sai Institute of Medical Sciences</div>
@@ -68,7 +71,11 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs text-white/60">
-          <div>© {new Date().getFullYear()} Sri Sai Institute of Medical Sciences (SSIMS), Hajipur. All rights reserved.</div>
+          <div className="flex flex-col gap-1">
+            <span>© {new Date().getFullYear()} Sri Sai Institute of Medical Sciences (SSIMS), Hajipur. All rights reserved.</span>
+            {/* Yahan par Sumirayan Design ka link add kiya gaya hai */}
+            <span>Designed and maintained by <a href="https://www.sumirayandesign.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-white transition-colors">Sumirayan Design</a></span>
+          </div>
           <div className="flex items-center gap-4">
             <Link to="/privacy" className="hover:text-white">Privacy</Link>
             <Link to="/terms" className="hover:text-white">Terms</Link>
