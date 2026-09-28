@@ -69,10 +69,10 @@ export function Logo({ variant = "dark" }: { variant?: "dark" | "light" }) {
   const sub = variant === "dark" ? "text-subtle" : "text-white/70";
   return (
     <Link to="/" className="flex items-center gap-3">
-      {/* Background shape, circle, aur hidden property hata di gayi hai */}
-      <div className="flex items-center justify-center">
-        {/* object-cover ki jagah object-contain lagaya gaya hai aur h-14 w-auto set kiya hai */}
-        <img src={ssimsLogo} alt="SSIMS Hajipur crest" className="h-14 w-auto object-contain" />
+      {/* Yahan se rounded-full, overflow-hidden aur background hata diya gaya hai */}
+      <div className="relative h-14 flex items-center justify-center">
+        {/* object-cover ki jagah object-contain lagaya gaya hai taaki logo pura dikhe */}
+        <img src={ssimsLogo} alt="SSIMS Hajipur crest" className="h-14 w-auto object-contain drop-shadow-sm" />
       </div>
       <div className="leading-tight">
         <div className={`font-display font-extrabold tracking-tight ${text}`}>SSIMS <span className="text-primary">Hajipur</span></div>
