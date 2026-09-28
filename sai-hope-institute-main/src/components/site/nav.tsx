@@ -2,6 +2,9 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X, Phone, Mail, MapPin, Facebook, Instagram, Youtube, Linkedin, Globe, HeartPulse, ChevronDown } from "lucide-react";
 
+// Naye logo ki file ko import kiya gaya hai
+import ssimsLogo from "../../assets/SSIMS Logo.png";
+
 const links = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
@@ -68,7 +71,8 @@ export function Logo({ variant = "dark" }: { variant?: "dark" | "light" }) {
   return (
     <Link to="/" className="flex items-center gap-3">
       <div className="relative h-14 w-14 rounded-full bg-white shadow-glow flex items-center justify-center overflow-hidden ring-2 ring-primary/30">
-        <img src="/ssims-crest.jpg" alt="SSIMS Hajipur crest" className="h-14 w-14 object-cover" />
+        {/* Yahan par purane src="/ssims-crest.jpg" ko naye import kiye hue ssimsLogo se replace kiya gaya hai */}
+        <img src={ssimsLogo} alt="SSIMS Hajipur crest" className="h-14 w-14 object-cover" />
       </div>
       <div className="leading-tight">
         <div className={`font-display font-extrabold tracking-tight ${text}`}>SSIMS <span className="text-primary">Hajipur</span></div>
