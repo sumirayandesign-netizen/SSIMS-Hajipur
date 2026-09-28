@@ -1,10 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Youtube, Linkedin, Mail, Phone, MapPin, Send } from "lucide-react";
-
-// Nav se Logo import karne ki zaroorat nahi hai agar aap naya logo use kar rahe hain,
-// kyunki wahan variant="light" logic tha aur ab hum seedha naya logo use karenge.
-// Agar aap wahi Component rakhna chahte hain, toh wahan ki Logo.tsx ko update kiya gaya tha.
-// Yahan direct naye logo ko dikhane ke liye image import kar rahe hain:
 import ssimsLogo from "../../assets/SSIMS Logo.png";
 
 export function Footer() {
@@ -16,11 +11,9 @@ export function Footer() {
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
             
-            {/* Purane <Logo variant="light" /> ki jagah naya logo code add kiya hai */}
+            {/* Yahan se round shape aur background hata kar nav jaisa code kar diya gaya hai */}
             <Link to="/" className="flex items-center gap-3 mb-4">
-              <div className="relative h-14 w-14 rounded-full bg-white shadow-glow flex items-center justify-center overflow-hidden ring-2 ring-primary/30">
-                <img src={ssimsLogo} alt="SSIMS Hajipur crest" className="h-14 w-14 object-cover" />
-              </div>
+              <img src={ssimsLogo} alt="SSIMS Hajipur crest" className="h-14 w-auto object-contain bg-transparent" />
               <div className="leading-tight">
                 <div className="font-display font-extrabold tracking-tight text-white">SSIMS <span className="text-primary">Hajipur</span></div>
                 <div className="text-[10px] uppercase tracking-[0.18em] text-white/70">Sri Sai Institute of Medical Sciences</div>
