@@ -20,7 +20,7 @@ function Page() {
       <PageHero eyebrow="Contact" title="We are here for you — 24×7." subtitle="Reach us for appointments, second opinions or emergencies. A real human always picks up." crumbs={[{ label: "Contact" }]} />
       <section className="pt-4 -mt-6">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="rounded-[32px] overflow-hidden shadow-glow ring-brand h-102">
+          <div className="rounded-[32px] overflow-hidden shadow-glow ring-brand h-112">
             <img src="/ssims/images/sims-hajipur.webp" alt="SSIMS Hajipur campus" className="w-full h-full object-cover" loading="lazy" />
           </div>
         </div>
